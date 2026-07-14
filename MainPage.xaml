@@ -1,7 +1,9 @@
 <?xml version="1.0" encoding="utf-8" ?>
 <ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:vm="clr-namespace:SwiftScan.ViewModels"
              x:Class="SwiftScan.MainPage"
+             x:DataType="vm:MainPageViewModel"
              Title="SwiftScan Dashboard"
              BackgroundColor="{AppThemeBinding Light={StaticResource White}, Dark={StaticResource OffBlack}}">
 
@@ -20,9 +22,10 @@
                            TextColor="{StaticResource Gray500}" />
                 </VerticalStackLayout>
                 
+                <!-- Logout Button -->
                 <Button Grid.Column="1"
-                        Text="🔒 Lock"
-                        Clicked="OnLockClicked"
+                        Text="➡️ Logout"
+                        Command="{Binding LogoutCommand}"
                         BackgroundColor="{AppThemeBinding Light={StaticResource Gray200}, Dark={StaticResource Gray900}}"
                         TextColor="{StaticResource Primary}"
                         FontAttributes="Bold"
@@ -67,12 +70,12 @@
                     </VerticalStackLayout>
                 </Border>
 
-                <!-- Stat 3 -->
+                <!-- Stat 3: Dynamic Currency Display -->
                 <Border Grid.Column="2" Stroke="{StaticResource Gray200}" StrokeShape="RoundRectangle 12" Padding="15" BackgroundColor="{AppThemeBinding Light={StaticResource White}, Dark={StaticResource Gray950}}">
                     <VerticalStackLayout Spacing="5" HorizontalOptions="Center">
                         <Label Text="📈" FontSize="28" HorizontalOptions="Center" />
                         <Label Text="Total Revenue" FontSize="12" TextColor="{StaticResource Gray500}" HorizontalOptions="Center" />
-                        <Label Text="$0.00" FontSize="20" FontAttributes="Bold" HorizontalOptions="Center" />
+                        <Label Text="{Binding TotalRevenueDisplay}" FontSize="20" FontAttributes="Bold" HorizontalOptions="Center" />
                     </VerticalStackLayout>
                 </Border>
             </Grid>

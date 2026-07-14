@@ -27,6 +27,7 @@ public static class MauiProgram
 		// Register ViewModels
 		builder.Services.AddTransient<SetupViewModel>();
 		builder.Services.AddTransient<PinLockViewModel>();
+		builder.Services.AddTransient<MainPageViewModel>();
 
 		// Register Pages
 		builder.Services.AddTransient<FirstTimeSetupPage>();

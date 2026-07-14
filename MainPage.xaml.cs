@@ -1,18 +1,21 @@
-using System;
+using SwiftScan.ViewModels;
 
 namespace SwiftScan
 {
     public partial class MainPage : ContentPage
     {
-        public MainPage()
+        private readonly MainPageViewModel _viewModel;
+
+        public MainPage(MainPageViewModel viewModel)
         {
             InitializeComponent();
+            BindingContext = _viewModel = viewModel;
         }
 
-        private async void OnLockClicked(object sender, EventArgs e)
+        protected override async void OnAppearing()
         {
-            // Redirect back to PIN authentication page
-            await Shell.Current.GoToAsync("///PinLockPage");
+            base.OnAppearing();
+            await _viewModel.LoadDashboardDataAsync();
         }
     }
 }
