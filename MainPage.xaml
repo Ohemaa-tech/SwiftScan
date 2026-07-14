@@ -1,0 +1,107 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="SwiftScan.MainPage"
+             Title="SwiftScan Dashboard"
+             BackgroundColor="{AppThemeBinding Light={StaticResource White}, Dark={StaticResource OffBlack}}">
+
+    <ScrollView>
+        <VerticalStackLayout Spacing="30" Padding="30" MaximumWidthRequest="800" HorizontalOptions="Center">
+            
+            <!-- Dashboard Header -->
+            <Grid ColumnDefinitions="*, Auto" VerticalOptions="Center">
+                <VerticalStackLayout Grid.Column="0" Spacing="4">
+                    <Label Text="SwiftScan POS"
+                           FontSize="28"
+                           FontAttributes="Bold"
+                           TextColor="{AppThemeBinding Light={StaticResource Black}, Dark={StaticResource White}}" />
+                    <Label Text="Welcome to your offline-first retail dashboard"
+                           FontSize="14"
+                           TextColor="{StaticResource Gray500}" />
+                </VerticalStackLayout>
+                
+                <Button Grid.Column="1"
+                        Text="🔒 Lock"
+                        Clicked="OnLockClicked"
+                        BackgroundColor="{AppThemeBinding Light={StaticResource Gray200}, Dark={StaticResource Gray900}}"
+                        TextColor="{StaticResource Primary}"
+                        FontAttributes="Bold"
+                        CornerRadius="8"
+                        Padding="15, 0"
+                        HeightRequest="40" />
+            </Grid>
+
+            <!-- Status Indicator Panel -->
+            <Border Stroke="{StaticResource Gray200}"
+                    StrokeThickness="1"
+                    StrokeShape="RoundRectangle 12"
+                    Padding="20"
+                    BackgroundColor="{AppThemeBinding Light=#F9F9FF, Dark=#1A1A2E}">
+                <Grid ColumnDefinitions="Auto, *, Auto" ColumnSpacing="15" VerticalOptions="Center">
+                    <Label Grid.Column="0" Text="🟢" FontSize="24" VerticalOptions="Center" />
+                    <VerticalStackLayout Grid.Column="1" VerticalOptions="Center">
+                        <Label Text="System Status: Ready" FontAttributes="Bold" FontSize="16" />
+                        <Label Text="SQLite Local Database Online" FontSize="12" TextColor="{StaticResource Gray500}" />
+                    </VerticalStackLayout>
+                    <Label Grid.Column="2" Text="Offline-First" FontAttributes="Italic" FontSize="12" TextColor="{StaticResource Primary}" VerticalOptions="Center" />
+                </Grid>
+            </Border>
+
+            <!-- Quick Stats Grid -->
+            <Grid RowDefinitions="Auto" ColumnDefinitions="*, *, *" ColumnSpacing="15">
+                <!-- Stat 1 -->
+                <Border Grid.Column="0" Stroke="{StaticResource Gray200}" StrokeShape="RoundRectangle 12" Padding="15" BackgroundColor="{AppThemeBinding Light={StaticResource White}, Dark={StaticResource Gray950}}">
+                    <VerticalStackLayout Spacing="5" HorizontalOptions="Center">
+                        <Label Text="📦" FontSize="28" HorizontalOptions="Center" />
+                        <Label Text="Products" FontSize="12" TextColor="{StaticResource Gray500}" HorizontalOptions="Center" />
+                        <Label Text="0" FontSize="20" FontAttributes="Bold" HorizontalOptions="Center" />
+                    </VerticalStackLayout>
+                </Border>
+
+                <!-- Stat 2 -->
+                <Border Grid.Column="1" Stroke="{StaticResource Gray200}" StrokeShape="RoundRectangle 12" Padding="15" BackgroundColor="{AppThemeBinding Light={StaticResource White}, Dark={StaticResource Gray950}}">
+                    <VerticalStackLayout Spacing="5" HorizontalOptions="Center">
+                        <Label Text="🛒" FontSize="28" HorizontalOptions="Center" />
+                        <Label Text="Today's Sales" FontSize="12" TextColor="{StaticResource Gray500}" HorizontalOptions="Center" />
+                        <Label Text="0" FontSize="20" FontAttributes="Bold" HorizontalOptions="Center" />
+                    </VerticalStackLayout>
+                </Border>
+
+                <!-- Stat 3 -->
+                <Border Grid.Column="2" Stroke="{StaticResource Gray200}" StrokeShape="RoundRectangle 12" Padding="15" BackgroundColor="{AppThemeBinding Light={StaticResource White}, Dark={StaticResource Gray950}}">
+                    <VerticalStackLayout Spacing="5" HorizontalOptions="Center">
+                        <Label Text="📈" FontSize="28" HorizontalOptions="Center" />
+                        <Label Text="Total Revenue" FontSize="12" TextColor="{StaticResource Gray500}" HorizontalOptions="Center" />
+                        <Label Text="$0.00" FontSize="20" FontAttributes="Bold" HorizontalOptions="Center" />
+                    </VerticalStackLayout>
+                </Border>
+            </Grid>
+
+            <!-- Quick Action Cards Section -->
+            <VerticalStackLayout Spacing="10">
+                <Label Text="Quick Actions" FontSize="18" FontAttributes="Bold" Margin="0,10,0,5" />
+                <Grid RowDefinitions="Auto, Auto" ColumnDefinitions="*, *" ColumnSpacing="15" RowSpacing="15">
+                    
+                    <Border Grid.Row="0" Grid.Column="0" Stroke="{StaticResource Gray200}" StrokeShape="RoundRectangle 12" Padding="20" BackgroundColor="{AppThemeBinding Light={StaticResource White}, Dark={StaticResource Gray950}}">
+                        <VerticalStackLayout Spacing="10">
+                            <Label Text="New Transaction" FontAttributes="Bold" FontSize="16" />
+                            <Label Text="Launch point-of-sale register to scan barcodes and checkout customers." FontSize="12" TextColor="{StaticResource Gray500}" />
+                            <Button Text="Start POS" BackgroundColor="{StaticResource Primary}" TextColor="{StaticResource White}" CornerRadius="8" Margin="0,10,0,0" />
+                        </VerticalStackLayout>
+                    </Border>
+
+                    <Border Grid.Row="0" Grid.Column="1" Stroke="{StaticResource Gray200}" StrokeShape="RoundRectangle 12" Padding="20" BackgroundColor="{AppThemeBinding Light={StaticResource White}, Dark={StaticResource Gray950}}">
+                        <VerticalStackLayout Spacing="10">
+                            <Label Text="Add Product" FontAttributes="Bold" FontSize="16" />
+                            <Label Text="Register new inventory items, set pricing, tax rates, and alert levels." FontSize="12" TextColor="{StaticResource Gray500}" />
+                            <Button Text="Add Inventory" BackgroundColor="{StaticResource Primary}" TextColor="{StaticResource White}" CornerRadius="8" Margin="0,10,0,0" />
+                        </VerticalStackLayout>
+                    </Border>
+
+                </Grid>
+            </VerticalStackLayout>
+
+        </VerticalStackLayout>
+    </ScrollView>
+
+</ContentPage>

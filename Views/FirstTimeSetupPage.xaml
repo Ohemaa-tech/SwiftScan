@@ -1,0 +1,132 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:vm="clr-namespace:SwiftScan.ViewModels"
+             x:Class="SwiftScan.Views.FirstTimeSetupPage"
+             x:DataType="vm:SetupViewModel"
+             Title="SwiftScan Setup"
+             BackgroundColor="{AppThemeBinding Light={StaticResource White}, Dark={StaticResource OffBlack}}">
+
+    <ScrollView VerticalOptions="CenterAndExpand">
+        <VerticalStackLayout Spacing="24" Padding="32" MaximumWidthRequest="480" HorizontalOptions="Center" VerticalOptions="Center">
+            
+            <!-- Header Image / Icon -->
+            <Border WidthRequest="80" 
+                    HeightRequest="80" 
+                    StrokeShape="RoundRectangle 40" 
+                    BackgroundColor="{StaticResource Secondary}"
+                    StrokeThickness="0"
+                    HorizontalOptions="Center"
+                    Margin="0,0,0,8">
+                <Label Text="🛡️" 
+                       FontSize="36" 
+                       HorizontalOptions="Center" 
+                       VerticalOptions="Center" />
+            </Border>
+
+            <!-- Titles -->
+            <VerticalStackLayout Spacing="6" HorizontalOptions="Center">
+                <Label Text="SwiftScan Setup"
+                       FontSize="28"
+                       FontAttributes="Bold"
+                       TextColor="{AppThemeBinding Light={StaticResource Black}, Dark={StaticResource White}}"
+                       HorizontalOptions="Center" />
+                <Label Text="Configure project foundation parameters"
+                       FontSize="14"
+                       TextColor="{StaticResource Gray500}"
+                       HorizontalOptions="Center" />
+            </VerticalStackLayout>
+
+            <!-- Error Notification -->
+            <Border Stroke="#FF8888" 
+                    StrokeThickness="1" 
+                    BackgroundColor="{AppThemeBinding Light=#FFF0F0, Dark=#3F1F1F}" 
+                    Padding="12" 
+                    IsVisible="{Binding HasError}"
+                    StrokeShape="RoundRectangle 8">
+                <HorizontalStackLayout Spacing="8" VerticalOptions="Center">
+                    <Label Text="⚠️" FontSize="16" VerticalOptions="Center" />
+                    <Label Text="{Binding ErrorMessage}" 
+                           TextColor="{AppThemeBinding Light=#D00000, Dark=#FF8888}" 
+                           FontAttributes="Bold"
+                           LineBreakMode="WordWrap"
+                           VerticalOptions="Center" />
+                </HorizontalStackLayout>
+            </Border>
+
+            <!-- PIN Fields Section -->
+            <Border Stroke="{StaticResource Gray200}"
+                    StrokeThickness="1"
+                    StrokeShape="RoundRectangle 12"
+                    Padding="20"
+                    BackgroundColor="{AppThemeBinding Light={StaticResource White}, Dark={StaticResource Gray950}}">
+                <VerticalStackLayout Spacing="16">
+                    <Label Text="Security Settings" FontSize="16" FontAttributes="Bold" TextColor="{StaticResource Primary}" />
+                    
+                    <VerticalStackLayout Spacing="6">
+                        <Label Text="Admin PIN (4-6 digits)" FontSize="13" TextColor="{StaticResource Gray500}" />
+                        <Entry Text="{Binding AdminPin}" 
+                               Placeholder="Enter numeric PIN" 
+                               IsPassword="True" 
+                               Keyboard="Numeric" 
+                               MaxLength="6" />
+                    </VerticalStackLayout>
+
+                    <VerticalStackLayout Spacing="6">
+                        <Label Text="Confirm Admin PIN" FontSize="13" TextColor="{StaticResource Gray500}" />
+                        <Entry Text="{Binding ConfirmPin}" 
+                               Placeholder="Re-enter numeric PIN" 
+                               IsPassword="True" 
+                               Keyboard="Numeric" 
+                               MaxLength="6" />
+                    </VerticalStackLayout>
+                </VerticalStackLayout>
+            </Border>
+
+            <!-- System Settings Section -->
+            <Border Stroke="{StaticResource Gray200}"
+                    StrokeThickness="1"
+                    StrokeShape="RoundRectangle 12"
+                    Padding="20"
+                    BackgroundColor="{AppThemeBinding Light={StaticResource White}, Dark={StaticResource Gray950}}">
+                <VerticalStackLayout Spacing="16">
+                    <Label Text="Localization &amp; Inventory" FontSize="16" FontAttributes="Bold" TextColor="{StaticResource Primary}" />
+                    
+                    <VerticalStackLayout Spacing="6">
+                        <Label Text="Currency Symbol" FontSize="13" TextColor="{StaticResource Gray500}" />
+                        <Border StrokeThickness="1" Stroke="{StaticResource Gray300}" StrokeShape="RoundRectangle 4" Padding="4">
+                            <Picker ItemsSource="{Binding Currencies}" 
+                                    SelectedItem="{Binding SelectedCurrency}"
+                                    Title="Select currency" />
+                        </Border>
+                    </VerticalStackLayout>
+
+                    <VerticalStackLayout Spacing="6">
+                        <Label Text="Default Tax Rate (%)" FontSize="13" TextColor="{StaticResource Gray500}" />
+                        <Entry Text="{Binding TaxRate}" 
+                               Placeholder="e.g. 15.0" 
+                               Keyboard="Numeric" />
+                    </VerticalStackLayout>
+
+                    <VerticalStackLayout Spacing="6">
+                        <Label Text="Low-Stock Alert Threshold" FontSize="13" TextColor="{StaticResource Gray500}" />
+                        <Entry Text="{Binding LowStockThreshold}" 
+                               Placeholder="e.g. 5" 
+                               Keyboard="Numeric" />
+                    </VerticalStackLayout>
+                </VerticalStackLayout>
+            </Border>
+
+            <!-- Action Button -->
+            <Button Text="Save &amp; Complete Setup"
+                    Command="{Binding SaveAndCompleteSetupCommand}"
+                    BackgroundColor="{StaticResource Primary}"
+                    TextColor="{StaticResource White}"
+                    HeightRequest="50"
+                    CornerRadius="8"
+                    FontAttributes="Bold"
+                    Margin="0,8,0,0" />
+
+        </VerticalStackLayout>
+    </ScrollView>
+</ContentPage>
